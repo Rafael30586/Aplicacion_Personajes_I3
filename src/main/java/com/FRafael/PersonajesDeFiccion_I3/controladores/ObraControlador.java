@@ -29,46 +29,63 @@ public class ObraControlador {
 	}
 	
 	@PostMapping("/guardada")
-	public ModelAndView guardar(String titulo, int anioLanzamiento, String clasificacion) {
-		
+	public ModelAndView guardar(String titulo, int anioLanzamiento, String clasificacion, 
+			Model mensaje,Model mensaje2) { //si el anioLanzamiento no se le coloca nada, te lo toma...
+		                                    //...como String, hay que arreglarlo
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("formulario_obra.html");
+		String mensajeDeAviso="";
 		
-		Obra obra = new Obra();
-		ClasificacionObra clasificacionObra;
 		
-		obra.setTitulo(titulo);
-		obra.setAnioLanzamiento(anioLanzamiento);
-		
-		if(clasificacion.equals("Video Juego")) {
-			clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
-			obra.setClasificacion(clasificacionObra);
-			obraServicio.guardar(obra);
-		}else if(clasificacion.equals("Comic")) {
-			clasificacionObra = ClasificacionObra.COMIC;
-			obra.setClasificacion(clasificacionObra);
-			obraServicio.guardar(obra);
-		}else if(clasificacion.equals("Pelicula")) {
-			clasificacionObra = ClasificacionObra.PELICULA;
-			obra.setClasificacion(clasificacionObra);
-			obraServicio.guardar(obra);
-		}else if(clasificacion.equals("Serie")) {
-			clasificacionObra = ClasificacionObra.SERIE;
-			obra.setClasificacion(clasificacionObra);
-			obraServicio.guardar(obra);
-		}else if(clasificacion.equals("libro")) {
-			clasificacionObra = ClasificacionObra.LIBRO;
-			obra.setClasificacion(clasificacionObra);
-			obraServicio.guardar(obra);
+		if(!titulo.equals("")&&!clasificacion.equals(null)) {
+			Obra obra = new Obra();
+			ClasificacionObra clasificacionObra;
+			obra.setTitulo(titulo);
+			obra.setAnioLanzamiento(anioLanzamiento);
+			
+			if(clasificacion.equals("Video Juego")) {
+				clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+			}else if(clasificacion.equals("Comic")) {
+				clasificacionObra = ClasificacionObra.COMIC;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+			}else if(clasificacion.equals("Pelicula")) {
+				clasificacionObra = ClasificacionObra.PELICULA;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+			}else if(clasificacion.equals("Serie")) {
+				clasificacionObra = ClasificacionObra.SERIE;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+			}else if(clasificacion.equals("libro")) {
+				clasificacionObra = ClasificacionObra.LIBRO;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+			}
+			mensaje.addAttribute("mensaje", mensajeDeAviso);
+			
+		}else {
+			mensajeDeAviso = "Ha ocurrido un error";
+			mensaje2.addAttribute("mensaje2", mensajeDeAviso);
 		}
 		
 		return modelAndView;
 	}
 	
 	@GetMapping("/lista")
-	public ModelAndView listarObras(Model model) {
+	public ModelAndView listarObras(Model model,Model modelCantidad) {
 		List<Obra> obras = obraServicio.devolverPorTitulo();
+		long cantidadObras = obras.size();
+		
 		model.addAttribute("obras",obras);
+		modelCantidad.addAttribute("cantidad",cantidadObras);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("lista_obras.html");

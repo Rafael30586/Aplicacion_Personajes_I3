@@ -71,13 +71,16 @@ public class PersonajeControlador {
 	
 
 	@GetMapping("/lista")
-	public ModelAndView listarPersonajes(Model model) {
+	public ModelAndView listarPersonajes(Model model,Model modelCantidad) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("lista_personajes.html");
 		
 		List<Personaje> personajes = personajeServicio.devolverTodos();
+		long cantidadPersonajes = personajes.size();
+		
 		model.addAttribute("personajes",personajes);
+		modelCantidad.addAttribute("cantidad", cantidadPersonajes);
 		
 		return modelAndView;
 	}
