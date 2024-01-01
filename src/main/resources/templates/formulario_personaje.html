@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" th:href="@{formulario_personaje_estilo.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/formulario_personaje_estilo.css}">
 	<title></title>
 </head>
 <body>
@@ -13,7 +13,7 @@
 	
 		<div class="formulario" id="formularioPersonaje">
 			<h2>Formulario de agrega<span class="letraColor1">do de personajes</span></h2>
-			<form th:action="{@}" method="post"
+			<form th:action="@{/personajes/personaje-guardado}" method="post">
 				<input type="text" name="nombre" placeholder="Nombre"><br>
 				<input type="text" name="apodo" placeholder="Apodo"><br>
 				<select name="idObra" id="clasificacion">

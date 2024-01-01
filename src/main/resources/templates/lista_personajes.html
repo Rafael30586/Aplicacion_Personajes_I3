@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="@{/css/lista_personajes_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        
+        <h1>Personajes en lista actual:<span id="resultados">3</span></h1>
+        <h1>Mensaje de error según el caso</h1>
+        <div class="formulario">
+            <h2>Buscar por nombr<span>e o apodo</span></h2>
+            <form>
+                <input type="text" name="nombre" placeholder="Primeras letras"><br>
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+        
+        <table id="personajes">
+            <thead>
+                <tr class="encabezado">
+                    <td>Id</td>
+                    <td>Nombre</td>
+                    <td>Apodo</td>
+                    <td>Obra</td>
+                    <td>Año</td>
+                </tr>
+        
+            </thead>
+            <tbody>
+				<tr class="fila" th:each="personaje: ${personajes}">
+					<td th:text="${personaje.id}" />
+					<td th:text="${personaje.nombre}" />
+					<td th:text="${personaje.apodo}" />
+					<td th:text="${personaje.obra.titulo}" />
+					<td th:text="${personaje.obra.anioLanzamiento}" />
+				</tr>
+                
+        
+            </tbody>
+        </table>
+
+        <div class="formulario" id="mostrarPersonaje">
+            <h2 id="h2Personaje">Mostrar persona<span>je por Id</span></h2>
+            <form>
+                <input type="number" name="Id" placeholder="Id del personaje"><br>
+                <button type="submit" id="botonVer">Ver Personaje</button>
+            </form>
+        </div>
+
+        <div id="formularioVolver">
+            <form>
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+        
+
+    </div>
+
+  
+</body>
+</html>
