@@ -43,8 +43,8 @@
 
         <div class="formulario" id="mostrarPersonaje">
             <h2 id="h2Personaje">Mostrar persona<span>je por Id</span></h2>
-            <form>
-                <input type="number" name="Id" placeholder="Id del personaje"><br>
+            <form th:action="@{/personajes/individual}" method="get">
+                <input type="number" name="id" placeholder="Id del personaje"><br>
                 <button type="submit" id="botonVer">Ver Personaje</button>
             </form>
         </div>

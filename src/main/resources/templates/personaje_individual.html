@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/personaje_individual_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1><span class="dato" id="nombre" th:text="${personaje.nombre}"></span> 
+            <span class="dato" id="nombre" th:text="${personaje.apodo}"></span>
+            <span class="dato" id="obra" th:text="${personaje.obra.titulo}"></span> 
+            <span class="dato" id="anio" th:text="${personaje.obra.anioLanzamiento}"></span></h1>
+        <div class="imagen">
+            <img th:src="${personaje.fotoUrl}" alt="Foto">
+        </div>
+
+        <div id="formularioVolver">
+            <form>
+                <button id="botonVolver" type="submit">Volver a lista de personajes</button>
+            </form>
+        </div>
+    </div>
+
+  
+</body>
+</html>
