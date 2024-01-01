@@ -1,0 +1,120 @@
+:root{
+    --colorPrincipal: #e8193a;
+    --colorSecundario: #4478b7;
+    --blanquito: #eff1e1;
+}
+
+body{
+    background-color: #303030;
+}
+
+.contenedor{
+    width: 600px;
+    /*background-color:#303030;*/
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1%;
+    padding-top: 20px;
+    margin-top: 80px;
+    border-style: solid;
+    border-width: 1px;
+    /*border-color: #e8193a;*/
+    border-color: var(--colorPrincipal);
+    border-bottom-color: var(--colorSecundario);
+    border-right-color: var(--colorSecundario);
+}
+
+#contenedorOpciones{
+    filter: brightness(30%);
+    transition-duration: 0.6s;
+    transition-property: filter;
+}
+
+#contenedorOpciones:hover{
+    filter: brightness(105%);
+}
+
+.formulario{
+    width: 86%;
+    height: 120px;
+    margin-left: 7%;
+}
+
+.botonInicio{
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom,var(--colorPrincipal),var(--colorSecundario));
+    border-style: none;
+    border-radius: 1%;
+    font-size: x-large;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    color:  var(--blanquito);
+    transition-property: opacity, background;
+    transition-duration: 0.6s;
+    cursor: pointer;
+}
+
+.botonInicio:hover{
+    /*background-color:#e8193a;*/
+    opacity: 0.85;
+    background: linear-gradient(to bottom,var(--colorPrincipal),var(--colorPrincipal));
+}
+
+#contenedorAyuda{
+    color: var(--colorPrincipal);
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    transition-duration: 0.6s;
+    transition-property: color;
+    padding-bottom: 30px;
+    font-size: large;
+    margin-bottom: 50px;
+}
+
+#contenedorAyuda:hover{
+    color: var(--blanquito);
+    /*border-color: var(--blanquito);*/
+}
+
+#instrucciones{
+    color: var(--colorPrincipal);
+    transition-property: color;
+    transition-duration: 0.6s;
+}
+
+#instrucciones:hover{
+    color: var(--blanquito);
+}
+
+#ejemplo{
+    color: var(--colorSecundario);
+    transition-property: color;
+    transition-duration: 0.6s;
+}
+
+#ejemplo:hover{
+    color: var(--blanquito);
+}
+
+@media only screen and (orientation:portrait),(max-width:700px){
+    .contenedor{
+        width: 90%;
+        border: none;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:500px){
+    .botonInicio{
+        font-size: large;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:500px){
+    #contenedorAyuda{
+        width: 85%;
+    }
+}
+
+
