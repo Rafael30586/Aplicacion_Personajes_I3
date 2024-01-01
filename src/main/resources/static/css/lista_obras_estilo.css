@@ -1,0 +1,239 @@
+:root{
+    --color1: #303030;
+    --color2: #006fa1;
+    --color3: #3e63be;
+    --color4: #c5b33c;
+    --color5: #e07efe;
+    --color6: #545454;
+    --color7: #252525;
+    --color8: #ffedfd;
+    --color9: #575420;
+    --color10:#11c05e;
+}
+
+@keyframes resultado{
+    0% {filter: brightness(120%);}
+    20% {filter: brightness(30%);}
+    40% {filter: brightness(120%);}
+    60% {filter: brightness(30%);}
+    80% {filter: brightness(120%);}
+    100% {filter: brightness(30%)}
+}
+
+body{
+    background-color: var(--color1);
+}
+
+.contenedor{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--color4);
+    text-align: left;
+}
+
+h1 span{
+    color: var(--color4);
+    animation-name: resultado;
+    animation-duration: 2s;
+}
+
+#resultados{
+    border-style: double;
+    border-color: var(--color3);
+    border-width: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.formulario{
+    border-color: var(--color3);
+    border-top-color: var(--color4);
+    border-radius: 1%;
+    border-style: groove;
+    border-width: 6px;
+    border-left-color: var(--color4);
+    padding-bottom: 20px;
+    opacity: 0.85;
+    transition-property: opacity,filter;
+    transition-duration: 0.5s;
+    filter: brightness(30%);
+    margin-top: 10px;
+}
+
+.formulario:hover{
+    opacity: 1;
+    filter: brightness(110%);
+    background: linear-gradient(to right,var(--color1),var(--color6));
+}
+
+h2{
+    text-align: center;
+    color: var(--color4);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color3);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+    font-size: xx-large;
+}
+
+h2 span{
+    color: var(--color3);
+}
+
+input{
+    margin-top: 10px;
+    width: 50%;
+    margin-left: 25%;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color: var(--color3);
+    border-bottom-width: 1px;
+    color: var(--color4);
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    height: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    font-weight: 900;
+    background-color: var(--color7);
+}
+
+button{
+    border: none;
+    background: linear-gradient(to bottom, var(--color4),var(--color3));
+    border-radius: 5%;
+    width: 20%;
+    height: 40px;
+    color: var(--color1);
+    font-weight: bold;
+    margin-left: 40%;
+    transition-property: color, background-color;
+    transition-duration: 0.6s;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover{
+    background: linear-gradient(to bottom,var(--color4),var(--color4));
+}
+
+
+#obras{
+    border-style: outset;
+    padding: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    border-bottom-color: var(--color3);
+    border-right-color: var(--color3);
+    border-left-color: var(--color4);
+    border-top-color: var(--color4);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.encabezado{
+    border-style: solid;
+    border-width: 1px;
+    background-color: var(--color4);
+    font-weight: bold;
+    font-size: large;
+}
+
+.encabezado td{
+    background: linear-gradient(to right,var(--color4),var(--color3));
+}
+
+.fila{
+    background-color: var(--color3);
+    opacity: 0.85;
+    transition-duration: 0.3s;
+    transition-property: opacity, color;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+
+.fila:hover{
+    opacity: 1.0;
+    background-color: var(--color4);
+    color: var(--color1);
+}
+
+td{
+    padding: 6px;
+}
+
+#formularioVolver{
+    width: 100%;
+    margin-top: 70px;
+}
+
+#botonVolver{
+    margin-bottom: 20px;
+    width: 60%;
+    margin-left: 20%;
+    background: linear-gradient(to bottom,var(--color10),var(--color9));
+    color: var(--color4);
+    height: 60px;
+    font-size: large;
+    border-radius: 2%;
+    color: var(--color8);
+    transition-duration: 0.4s;
+    transition-property: opacity, background;
+    opacity: 1.0;
+}
+
+#botonVolver:hover{
+    background: linear-gradient(to bottom,var(--color10),var(--color10));
+    opacity: 0.8;
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    .contenedor{
+        width: 90%;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    h1{
+        font-size: medium;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    h2{
+        font-size: large;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    button{
+        width: 30%;
+        margin-left: 35%;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    #obras thead tr td{
+        font-size: small;
+    }
+}
+
+@media only screen and (orientation:portrait),(max-width:900px){
+    #obras{
+        font-size: small;
+        width: 90%;
+        margin-left: 5%;
+    }
+}

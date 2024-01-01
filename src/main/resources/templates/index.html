@@ -9,7 +9,7 @@
 <body>
     <div class="contenedor" id="contenedorOpciones">
         <div class="formulario">
-            <form action="" method="">
+            <form action="" method="get">
                 <button type="submit" class="botonInicio">Lista de personajes</button>
             </form>
         </div>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="formulario">
-            <form action="" method="">
+            <form th:action="@{/obras/lista}" method="get">
                 <button type="submit" class="botonInicio">Lista de obras</button>
             </form>
         </div>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{lista_obras_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Resultados:<span id="resultados">3</span></h1>
+        <h1>Mensaje de error según el caso</h1>
+        <div class="formulario">
+            <h2>Buscar por letras e<span>n el título</span></h2>
+            <form>
+                <input type="text" name="letras" placeholder="Título"><br>
+                <button class="botonFiltrar" type="submit" id="porTitulo">Filtrar</button>
+            </form>
+        </div>
+        <div class="formulario">
+            <h2>Buscar por año de lan<span>zamiento</span></h2>
+            <form>
+                <input type="number" name="minimo" placeholder="Desde"><br>
+                <input type="number" name="maximo" placeholder="Hasta"><br>
+                <button class="botonFiltrar" type="submit" id="porFechaLanzamiento">Filtrar</button>
+            </form>
+        </div>
+        
+        <table id="obras">
+            <thead>
+                <tr class="encabezado">
+                    <td>Id</td>
+                    <td>Título</td>
+                    <td>Lanzamiento</td>
+                    <td>Clasificación</td>
+                </tr>
+        
+            </thead>
+            <tbody>
+				<tr class="fila" th:each="obra: ${obras}">
+					<td th:text="${obra.id}" />
+					<td th:text="${obra.titulo}" />
+					<td th:text="${obra.anioLanzamiento}" />
+					<td th:text="${obra.clasificacion}" />
+				</tr>
+                
+        
+            </tbody>
+        </table>
+
+        <div id="formularioVolver">
+            <form>
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+        
+
+    </div>
+
+  
+</body>
+</html>

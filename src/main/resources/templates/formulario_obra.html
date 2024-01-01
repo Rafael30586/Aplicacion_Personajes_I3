@@ -13,7 +13,7 @@
         
         <div class="formulario" id="formularioObra">
             <h2>Formulario de ag<span class="letraColor1">regado de obras</span></h2>
-            <form>
+            <form th:action="@{/obras/guardada}" method="post">
                 <input type="text" name="titulo" placeholder="Título"><br>
                 <input type="number" name="anioLanzamiento" placeholder="Año de lanzamiento" id="inputLanzamiento"><br>
                 <select name="clasificacion" id="clasificacion">
