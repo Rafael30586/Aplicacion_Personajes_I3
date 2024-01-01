@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/formulario_obra_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 id="exito">Obra guardada con éxito</h1>
+        <h1 id="error">Ha ocurrido un error</h1>
+        
+        <div class="formulario" id="formularioObra">
+            <h2>Formulario de ag<span class="letraColor1">regado de obras</span></h2>
+            <form>
+                <input type="text" name="titulo" placeholder="Título"><br>
+                <input type="number" name="anioLanzamiento" placeholder="Año de lanzamiento" id="inputLanzamiento"><br>
+                <select name="clasificacion" id="clasificacion">
+                    <option value="Video Juego">Video Juego</option>
+                    <option value="Comic">Comic</option>
+                    <option value="Pelicula">Película</option>
+                    <option value="Serie">Serie</option>
+                    <option value="Libro">Libro</option>
+                </select><br>
+                <button id="botonEnviar" type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="formulario" id="formularioVolver">
+            <form>
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+    </div>
+    
+
+  
+</body>
+</html>

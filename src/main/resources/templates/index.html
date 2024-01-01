@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="formulario">
-            <form action="" method="">
+            <form th:action="@{/obras/formulario}" method="get">
                 <button type="submit" class="botonInicio">Agregar nueva obra</button>
             </form>
         </div>
