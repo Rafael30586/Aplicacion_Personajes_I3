@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="@{/css/lista_personajes_estilo.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/lista_personajes_estilo.css}">
 	<title></title>
 </head>
 <body>
@@ -38,8 +38,6 @@
 					<td th:text="${personaje.obra.titulo}" />
 					<td th:text="${personaje.obra.anioLanzamiento}" />
 				</tr>
-                
-        
             </tbody>
         </table>
 

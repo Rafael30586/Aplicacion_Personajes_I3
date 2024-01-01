@@ -58,5 +58,18 @@ public class PersonajeControlador {
 		
 		return modelAndView;
 	}
+	
+
+	@GetMapping("/lista")
+	public ModelAndView listarPersonajes(Model model) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("lista_personajes.html");
+		
+		List<Personaje> personajes = personajeServicio.devolverTodos();
+		model.addAttribute("personajes",personajes);
+		
+		return modelAndView;
+	}
 
 }
