@@ -24,6 +24,15 @@ public class PersonajeControlador {
 	@Autowired
 	private ObraServicio obraServicio;
 	
+	@GetMapping("/inicio")
+	public ModelAndView mostrarInicio() {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("index.html");
+		
+		return modelAndView;
+	}
+	
 	@GetMapping("/formulario")
 	public ModelAndView mostrarFormulario(Model model) {
 		
