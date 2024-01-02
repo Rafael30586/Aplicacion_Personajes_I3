@@ -92,5 +92,35 @@ public class ObraControlador {
 		
 		return modelAndView;
 	}
+	
+	@GetMapping("/filtro-por-titulo")
+	public ModelAndView filtrarPorTitulo(String letras,Model model,Model modelCantidad) {
+		List<Obra> obras = obraServicio.devolverFiltroTitulo(letras);
+		
+        long cantidadObras = obras.size();
+		
+		model.addAttribute("obras",obras);
+		modelCantidad.addAttribute("cantidad",cantidadObras);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("lista_obras.html");
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/filtro-por-lanzamiento")
+	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad) {
+		List<Obra> obras = obraServicio.devolverFiltroLanzamiento(minimo, maximo);
+		
+        long cantidadObras = obras.size();
+		
+		model.addAttribute("obras",obras);
+		modelCantidad.addAttribute("cantidad",cantidadObras);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("lista_obras.html");
+		
+		return modelAndView;
+	}
 
 }
