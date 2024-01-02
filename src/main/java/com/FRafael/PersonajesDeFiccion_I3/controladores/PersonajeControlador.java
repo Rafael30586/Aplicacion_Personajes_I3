@@ -85,6 +85,22 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
+	@GetMapping("/filtro-por-nombre")
+	public ModelAndView filtrarPorNombre(String nombre,Model model,Model modelCantidad) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("lista_personajes.html");
+		
+		List<Personaje> personajes = personajeServicio.devolverFiltroNombre(nombre);
+		
+        long cantidadPersonajes = personajes.size();
+		
+		model.addAttribute("personajes",personajes);
+		modelCantidad.addAttribute("cantidad", cantidadPersonajes);
+		
+		return modelAndView;
+	}
+	
 	@GetMapping("/individual")
 	public ModelAndView mostrarPersonaje(@RequestParam Long id, Model model) {
 		Personaje personaje = personajeServicio.devolverPorId(id);
