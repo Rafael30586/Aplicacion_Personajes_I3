@@ -102,8 +102,18 @@ public class PersonajeControlador {
 	}
 	
 	@GetMapping("/individual")
-	public ModelAndView mostrarPersonaje(@RequestParam Long id, Model model) {
+	public ModelAndView mostrarPersonaje(@RequestParam Long id, Model model, Model modelNombre) {
 		Personaje personaje = personajeServicio.devolverPorId(id);
+		String nombreOApodo;
+		
+		if(personaje.getApodo().equals(null)||personaje.getApodo().equals("")) {
+			nombreOApodo = personaje.getNombre();
+		}else {
+			nombreOApodo = personaje.getApodo();
+		}
+		
+		modelNombre.addAttribute("nombreOApodo",nombreOApodo);
+		
 		model.addAttribute("personaje",personaje);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("personaje_individual.html");
