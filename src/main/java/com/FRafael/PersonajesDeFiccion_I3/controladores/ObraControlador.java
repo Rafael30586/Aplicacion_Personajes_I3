@@ -28,7 +28,7 @@ public class ObraControlador {
 		return modelAndView;
 	}
 	
-	@PostMapping("/guardada")
+	@PostMapping("/guardada") //usar condicionales para evitar valores  muy grandes
 	public ModelAndView guardar(String titulo, int anioLanzamiento, String clasificacion, 
 			Model mensaje,Model mensaje2) { //si el anioLanzamiento no se le coloca nada, te lo toma...
 		                                    //...como String, hay que arreglarlo
@@ -81,10 +81,15 @@ public class ObraControlador {
 	
 	@GetMapping("/lista")
 	public ModelAndView listarObras(Model model,Model modelCantidad) {
+			
 		List<Obra> obras = obraServicio.devolverPorTitulo();
+		
 		long cantidadObras = obras.size();
 		
-		model.addAttribute("obras",obras);
+		if(cantidadObras!=0) {
+        	model.addAttribute("obras",obras);
+        }
+		
 		modelCantidad.addAttribute("cantidad",cantidadObras);
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -94,12 +99,16 @@ public class ObraControlador {
 	}
 	
 	@GetMapping("/filtro-por-titulo")
-	public ModelAndView filtrarPorTitulo(String letras,Model model,Model modelCantidad) {
+	public ModelAndView filtrarPorTitulo(String letras,Model model,Model modelCantidad){
+			 
 		List<Obra> obras = obraServicio.devolverFiltroTitulo(letras);
 		
         long cantidadObras = obras.size();
+        
+        if(cantidadObras!=0) {
+        	model.addAttribute("obras",obras);
+        }
 		
-		model.addAttribute("obras",obras);
 		modelCantidad.addAttribute("cantidad",cantidadObras);
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -109,13 +118,17 @@ public class ObraControlador {
 	}
 	
 	@GetMapping("/filtro-por-lanzamiento")
-	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad) {
+	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad){
+			 
 		List<Obra> obras = obraServicio.devolverFiltroLanzamiento(minimo, maximo);
 		
         long cantidadObras = obras.size();
-		
-		model.addAttribute("obras",obras);
-		modelCantidad.addAttribute("cantidad",cantidadObras);
+        
+        modelCantidad.addAttribute("cantidad",cantidadObras);
+        
+        if(cantidadObras!=0) {
+        	model.addAttribute("obras",obras);
+        }
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("lista_obras.html");

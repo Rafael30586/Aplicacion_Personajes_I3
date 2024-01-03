@@ -16,7 +16,7 @@ public interface ObraRepositorio extends JpaRepository<Obra,Long>{
 			nativeQuery = true)
 	public List<Obra> devolverPorTitulo();
 	
-	@Query(value = "SELECT o FROM obra o WHERE o.titulo LIKE %:letras% ORDER BY o.titulo")
+	@Query(value = "SELECT o FROM obra o WHERE o.titulo LIKE :letras% ORDER BY o.titulo")
 	public List<Obra> devolverFiltroTitulo(@Param("letras") String letras);
 	
 	@Query(value = "SELECT * FROM obra WHERE anio_lanzamiento BETWEEN :minimo AND :maximo ORDER BY anio_lanzamiento",

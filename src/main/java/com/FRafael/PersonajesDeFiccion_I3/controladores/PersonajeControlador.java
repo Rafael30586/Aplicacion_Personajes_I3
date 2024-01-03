@@ -45,7 +45,7 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
-	@PostMapping("/personaje-guardado")
+	@PostMapping("/personaje-guardado") //usar condicionales para evitar valores  muy grandes
 	public ModelAndView guardar(String nombre, String apodo, String idObra,
 			String fotoUrl,Model model) {
 		Long idObraLong = Long.parseLong(idObra);
