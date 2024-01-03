@@ -17,7 +17,8 @@
 				<input type="text" name="nombre" placeholder="Nombre"><br>
 				<input type="text" name="apodo" placeholder="Apodo"><br>
 				<select name="idObra" id="clasificacion">
-					<option th:each="obra: ${obras}" th:value="${obra.id}" th:text="${obra.titulo}"></option>
+					<option th:each="obra: ${obras}" th:value="${obra.id}" 
+					th:text="${obra.titulo}+'('+${obra.anioLanzamiento}+')'"></option>
 				</select><br>
 				<input type="text" name="fotoUrl" placeholder="URL de la foto"><br>
 				<button id="botonEnviar" type="submit">Enviar</button>
