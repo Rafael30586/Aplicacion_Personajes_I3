@@ -74,7 +74,7 @@ public class PersonajeControlador {
 	public ModelAndView listarPersonajes(Model model,Model modelCantidad) {
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("lista_personajes.html");
+		modelAndView.setViewName("lista_personajes_b.html");
 		
 		List<Personaje> personajes = personajeServicio.devolverTodos();
 		long cantidadPersonajes = personajes.size();

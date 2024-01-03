@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/lista_personajes_estilo.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/lista_personajes_estilo_b.css}">
 	<title></title>
 </head>
 <body>
@@ -42,14 +42,14 @@
         </table>
 
         <div class="formulario" id="mostrarPersonaje">
-            <h2 id="h2Personaje">Mostrar persona<span>je por Id</span></h2>
+            <h2 id="h2Personaje">Mostrar persona<span>aje</span></h2>
             <form th:action="@{/personajes/individual}" method="get">
                 <!--<input type="number" name="id" placeholder="Id del personaje"><br>-->
                 <select name="id">
 					<option 
 					th:each="personaje: ${personajes}" 
 					th:value="${personaje.id}"
-					th:text="${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}+' '+${personaje.obra.anioLanzamiento}">	
+					th:text="${personaje.nombre}+' '+${personaje.apodo}+' - '+${personaje.obra.titulo}+' '+${personaje.obra.anioLanzamiento}">	
 					</option>
 				</select>
                 <button type="submit" id="botonVer">Ver Personaje</button>
