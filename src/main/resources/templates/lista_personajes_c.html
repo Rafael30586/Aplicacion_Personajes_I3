@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/lista_personajes_estilo_c.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        
+        <h1>Personajes en lista actual:<span id="resultados" th:text="${cantidad}"></span></h1>
+        <h1>Mensaje de error según el caso</h1>
+        <div class="formulario">
+            <h2>Buscar por nombr<span>e o apodo</span></h2>
+            <form th:action="@{/personajes/filtro-por-nombre}" method="get">
+                <input type="text" name="nombre" placeholder="Primeras letras" class="inputFiltro"><br>
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+        <form th:action="@{/personajes/individual}" method="get">
+            <table id="personajes">
+                <thead>
+                    <tr class="encabezado">
+                        <td>Id</td>
+                        <td>Nombre</td>
+                        <td>Apodo</td>
+                        <td>Obra</td>
+                        <td>Año</td>
+                        <td>Elegir</td>
+                    </tr>
+            
+                </thead>
+				<tbody>
+					<tr class="fila" th:each="personaje: ${personajes}">
+						<td th:text="${personaje.id}" />
+						<td th:text="${personaje.nombre}" />
+						<td th:text="${personaje.apodo}" />
+						<td th:text="${personaje.obra.titulo}" />
+						<td th:text="${personaje.obra.anioLanzamiento}" />
+						<td><input type="radio" name="id" th:value="${personaje.id}" class="radioBoton"></td>
+					</tr>
+				</tbody>
+            </table>
+
+            <button type="submit" id="botonVer">Ver Personaje</button>
+
+        </form>
+        
+        <div id="formularioVolver">
+            <form th:action="@{/personajes/inicio}" method="get">
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+        
+
+    </div>
+
+  
+</body>
+</html>
