@@ -9,7 +9,7 @@
 <body>
     <div class="contenedor">
         <h1>Resultados:<span id="resultados" th:text="${cantidad}"></span></h1>
-        <h1>Mensaje de error según el caso</h1>
+        <h1 th:text="${errorPorLanzamiento}"></h1>
         <div class="formulario">
             <h2>Buscar por letras e<span>n el título</span></h2>
             <form th:action="@{/obras/filtro-por-titulo}" method="get">

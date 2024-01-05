@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div class="contenedor">
-		<h1 id="exito">Personaje guardado con éxito</h1>
-		<h1 id="error">Ha ocurrido un error</h1>
+		<h1 id="exito" th:text="${mensajeExitoso}"></h1>
+		<h1 id="error" th:text="${mensajeDeError}"></h1>
 	
 		<div class="formulario" id="formularioPersonaje">
 			<h2>Formulario de agrega<span class="letraColor1">do de personajes</span></h2>

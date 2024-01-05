@@ -47,24 +47,33 @@ public class PersonajeControlador {
 	
 	@PostMapping("/personaje-guardado") //usar condicionales para evitar valores  muy grandes
 	public ModelAndView guardar(String nombre, String apodo, String idObra,
-			String fotoUrl,Model model) {
-		Long idObraLong = Long.parseLong(idObra);
-		
-		Obra obra = obraServicio.devolverPorId(idObraLong);
-		
+			String fotoUrl,Model model,Model mensaje, Model mensaje2) {
+		Long idObraLong;  
+		String mensajeDeAviso="";
 		List<Obra> obras = obraServicio.devolverTodas();
 		model.addAttribute("obras",obras);
 		
+		if((!apodo.equals("")||!nombre.equals(""))&&!idObra.equals("")&&!fotoUrl.equals("")) {
+			idObraLong = Long.parseLong(idObra);
+			Obra obra = obraServicio.devolverPorId(idObraLong);
+			
+			Personaje personaje = new Personaje();
+			personaje.setNombre(nombre);
+			personaje.setApodo(apodo);
+			personaje.setObra(obra);
+			personaje.setFotoUrl(fotoUrl);
+			
+			personajeServicio.guardar(personaje);
+			
+			mensajeDeAviso = "Personaje guardado correctamente";
+			mensaje.addAttribute("mensajeExitoso",mensajeDeAviso);
+		}else {
+			mensajeDeAviso = "Ha ocurrido un error";
+			mensaje2.addAttribute("mensajeDeError",mensajeDeAviso); //Funciona pero tratare de usar condicionales para...
+		}                                          //...usar un Model solo para ambos mensajes
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("formulario_personaje.html");
-		
-		Personaje personaje = new Personaje();
-		personaje.setNombre(nombre);
-		personaje.setApodo(apodo);
-		personaje.setObra(obra);
-		personaje.setFotoUrl(fotoUrl);
-		
-		personajeServicio.guardar(personaje);
 		
 		return modelAndView;
 	}

@@ -118,9 +118,18 @@ public class ObraControlador {
 	}
 	
 	@GetMapping("/filtro-por-lanzamiento")
-	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad){
-			 
-		List<Obra> obras = obraServicio.devolverFiltroLanzamiento(minimo, maximo);
+	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad,
+			Model mensaje){
+		String mensajeDeAviso="";
+		List<Obra> obras;
+		
+		if (maximo > minimo) {
+			obras = obraServicio.devolverFiltroLanzamiento(minimo, maximo);
+		}else {
+			obras = obraServicio.devolverPorTitulo();
+			mensajeDeAviso = "El campo Hasta debe ser mayor que el campo Desde";
+			mensaje.addAttribute("errorPorLanzamiento",mensajeDeAviso);
+		}
 		
         long cantidadObras = obras.size();
         
