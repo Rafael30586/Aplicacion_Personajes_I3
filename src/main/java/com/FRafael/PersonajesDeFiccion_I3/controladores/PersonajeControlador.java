@@ -2,6 +2,7 @@ package com.FRafael.PersonajesDeFiccion_I3.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,7 +134,11 @@ public class PersonajeControlador {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("personaje_individual.html");
 		return modelAndView;
-		
+	}
+	
+	@DeleteMapping("/borrado")
+	public void borrarPersonaje(@RequestParam Long id) {
+		personajeServicio.borrarPorId(id);
 	}
 
 }
