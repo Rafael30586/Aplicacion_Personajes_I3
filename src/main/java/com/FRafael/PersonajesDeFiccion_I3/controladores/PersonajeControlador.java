@@ -54,19 +54,25 @@ public class PersonajeControlador {
 		model.addAttribute("obras",obras);
 		
 		if((!apodo.equals("")||!nombre.equals(""))&&!idObra.equals("")&&!fotoUrl.equals("")) {
-			idObraLong = Long.parseLong(idObra);
-			Obra obra = obraServicio.devolverPorId(idObraLong);
+			if(apodo.length()<=25&&nombre.length()<=25) {
+				idObraLong = Long.parseLong(idObra);
+				Obra obra = obraServicio.devolverPorId(idObraLong);
+				
+				Personaje personaje = new Personaje();
+				personaje.setNombre(nombre);
+				personaje.setApodo(apodo);
+				personaje.setObra(obra);
+				personaje.setFotoUrl(fotoUrl);
+				
+				personajeServicio.guardar(personaje);
+				
+				mensajeDeAviso = "Personaje guardado correctamente";
+				mensaje.addAttribute("mensajeExitoso",mensajeDeAviso);
+			}else {
+				mensajeDeAviso = "El nombre o apodo del personaje es demasiado extenso";
+				mensaje2.addAttribute("mensajeDeError",mensajeDeAviso);
+			}
 			
-			Personaje personaje = new Personaje();
-			personaje.setNombre(nombre);
-			personaje.setApodo(apodo);
-			personaje.setObra(obra);
-			personaje.setFotoUrl(fotoUrl);
-			
-			personajeServicio.guardar(personaje);
-			
-			mensajeDeAviso = "Personaje guardado correctamente";
-			mensaje.addAttribute("mensajeExitoso",mensajeDeAviso);
 		}else {
 			mensajeDeAviso = "Ha ocurrido un error";
 			mensaje2.addAttribute("mensajeDeError",mensajeDeAviso); //Funciona pero tratare de usar condicionales para...

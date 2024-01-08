@@ -38,38 +38,44 @@ public class ObraControlador {
 		
 		
 		if(!titulo.equals("")&&!clasificacion.equals(null)) {
-			Obra obra = new Obra();
-			ClasificacionObra clasificacionObra;
-			obra.setTitulo(titulo);
-			obra.setAnioLanzamiento(anioLanzamiento);
-			
-			if(clasificacion.equals("Video Juego")) {
-				clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
-				obra.setClasificacion(clasificacionObra);
-				obraServicio.guardar(obra);
-				mensajeDeAviso = "La obra se ha guardado correctamente";
-			}else if(clasificacion.equals("Comic")) {
-				clasificacionObra = ClasificacionObra.COMIC;
-				obra.setClasificacion(clasificacionObra);
-				obraServicio.guardar(obra);
-				mensajeDeAviso = "La obra se ha guardado correctamente";
-			}else if(clasificacion.equals("Pelicula")) {
-				clasificacionObra = ClasificacionObra.PELICULA;
-				obra.setClasificacion(clasificacionObra);
-				obraServicio.guardar(obra);
-				mensajeDeAviso = "La obra se ha guardado correctamente";
-			}else if(clasificacion.equals("Serie")) {
-				clasificacionObra = ClasificacionObra.SERIE;
-				obra.setClasificacion(clasificacionObra);
-				obraServicio.guardar(obra);
-				mensajeDeAviso = "La obra se ha guardado correctamente";
-			}else if(clasificacion.equals("libro")) {
-				clasificacionObra = ClasificacionObra.LIBRO;
-				obra.setClasificacion(clasificacionObra);
-				obraServicio.guardar(obra);
-				mensajeDeAviso = "La obra se ha guardado correctamente";
+			if(titulo.length()<=40) {
+				Obra obra = new Obra();
+				ClasificacionObra clasificacionObra;
+				obra.setTitulo(titulo);
+				obra.setAnioLanzamiento(anioLanzamiento);
+				
+				if(clasificacion.equals("Video Juego")) {
+					clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
+					obra.setClasificacion(clasificacionObra);
+					obraServicio.guardar(obra);
+					mensajeDeAviso = "La obra se ha guardado correctamente";
+				}else if(clasificacion.equals("Comic")) {
+					clasificacionObra = ClasificacionObra.COMIC;
+					obra.setClasificacion(clasificacionObra);
+					obraServicio.guardar(obra);
+					mensajeDeAviso = "La obra se ha guardado correctamente";
+				}else if(clasificacion.equals("Pelicula")) {
+					clasificacionObra = ClasificacionObra.PELICULA;
+					obra.setClasificacion(clasificacionObra);
+					obraServicio.guardar(obra);
+					mensajeDeAviso = "La obra se ha guardado correctamente";
+				}else if(clasificacion.equals("Serie")) {
+					clasificacionObra = ClasificacionObra.SERIE;
+					obra.setClasificacion(clasificacionObra);
+					obraServicio.guardar(obra);
+					mensajeDeAviso = "La obra se ha guardado correctamente";
+				}else if(clasificacion.equals("libro")) {
+					clasificacionObra = ClasificacionObra.LIBRO;
+					obra.setClasificacion(clasificacionObra);
+					obraServicio.guardar(obra);
+					mensajeDeAviso = "La obra se ha guardado correctamente";
+				}
+				mensaje.addAttribute("mensaje", mensajeDeAviso);	
+			}else {
+				mensajeDeAviso = "El titulo de la obra es demasiado extenso";
+				mensaje2.addAttribute("mensaje2", mensajeDeAviso);
 			}
-			mensaje.addAttribute("mensaje", mensajeDeAviso);
+			
 			
 		}else {
 			mensajeDeAviso = "Ha ocurrido un error";
