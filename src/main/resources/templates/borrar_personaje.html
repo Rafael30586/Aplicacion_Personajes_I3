@@ -14,8 +14,8 @@
         <div class="formulario" id="formularioPersonaje">
             <h2>Formulario de borrado de person<span class="letraColor1">ajes</span></h2>
             <div class="envoltorio">
-                <select name="clasificacion" id="seleccion">
-                    <option th:each="personaje: ${personajes}" 
+                <select name="clasificacion" id="seleccion"> 
+                    <option th:each="personaje: ${personajes}" th:value="${personaje.id}" 
                     th:text="${personaje.id}+' '+${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}"></option>
                     </option>
                 </select><br>
@@ -30,6 +30,6 @@
     </div>
     
 
-    <script type="text/javascript" th:src="@{/js/borrar_personaje_codigo.js}"></script>
+    <script type="text/javascript" th:src="@{/js/borrar_personaje_codigo_c.js}"></script>
 </body>
 </html>
