@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/borrar_personaje_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 id="exito">Personaje borrado con éxito</h1>
+        <!--<h1 id="error">Ha ocurrido un error</h1>-->
+        
+        <div class="formulario" id="formularioPersonaje">
+            <h2>Formulario de borrado de person<span class="letraColor1">ajes</span></h2>
+            <div class="envoltorio">
+                <select name="clasificacion" id="seleccion">
+                    <option th:each="personaje: ${personajes}" 
+                    th:text="${personaje.id}+' '+${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}"></option>
+                    </option>
+                </select><br>
+                <button id="botonEnviar">Enviar</button>
+            </div>
+        </div>
+        <div class="formulario" id="formularioVolver">
+            <form th:action="@{/personajes/inicio}" method="get">
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript" th:src="@{/js/borrar_personaje_codigo.js}"></script>
+</body>
+</html>

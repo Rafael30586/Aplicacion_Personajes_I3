@@ -19,6 +19,12 @@
                 <button type="submit" class="botonInicio">Agregar nuevo personaje</button>
             </form>
         </div>
+        
+        <div class="formulario">
+            <form th:action="@{/personajes/formulario-borrado-personaje}" method="get">
+                <button type="submit" class="botonInicio">Borrar personaje existente</button>
+            </form>
+        </div>
 
         <div class="formulario">
             <form th:action="@{/obras/lista}" method="get">
@@ -29,6 +35,12 @@
         <div class="formulario">
             <form th:action="@{/obras/formulario}" method="get">
                 <button type="submit" class="botonInicio">Agregar nueva obra</button>
+            </form>
+        </div>
+        
+        <div class="formulario">
+            <form th:action="@{/obras/formulario}" method="get">
+                <button type="submit" class="botonInicio">Editar obra existente</button>
             </form>
         </div>
 

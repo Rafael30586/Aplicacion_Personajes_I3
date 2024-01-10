@@ -136,9 +136,30 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
+	@GetMapping("/formulario-borrado-personaje")
+	public ModelAndView borrarPersonaje(Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("borrar_personaje.html");
+		
+		List<Personaje> personajes = personajeServicio.devolverTodos();
+		
+		model.addAttribute("personajes",personajes);
+		
+		
+		return modelAndView;
+	}
+	
 	@DeleteMapping("/borrado")
-	public void borrarPersonaje(@RequestParam Long id) {
+	public ModelAndView borrarPersonaje(@RequestParam Long id,Model model) {
 		personajeServicio.borrarPorId(id);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("borrar_personaje.html");
+		
+        List<Personaje> personajes = personajeServicio.devolverTodos();
+		
+		model.addAttribute("personajes",personajes);
+		
+		return modelAndView;
 	}
 
 }
