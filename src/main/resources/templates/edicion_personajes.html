@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/edicion_personajes_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 id="exito">Personaje editado con éxito</h1>
+        <h1 id="error">Ha ocurrido un error</h1>
+        
+        <div class="formulario" id="formularioPersonaje">
+            <h2>Formulario de edicion de perso<span class="letraColor1">najes</span></h2>
+            <form>
+                <select name="idPersonaje" id="selectPersonaje">
+                    <option th:each="personaje: ${personajes}" th:value="${personaje.id}"
+                    th:text="${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}"></option>
+                </select><br>
+                <input type="text" name="nombre" placeholder="Nombre" id="inputNombre"><br>
+                <input type="text" name="apodo" placeholder="Apodo" id="inputApodo"><br>
+                <select name="obra" id="selectObra">
+                    <option th:each="obra: ${obras}" value="obra"
+                    th:text="${obra.titulo}+' - '+${obra.anioLanzamiento}"></option>
+                </select><br>
+                <input type="text" name="urlFoto" placeholder="URL de una foto" id="inputUrlFoto"><br>
+                <button id="botonEnviar" type="submit">Enviar</button>
+            </div>
+        </form>
+        <div class="formulario" id="formularioVolver">
+            <form>
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </form>
+        </div>
+    </div>
+    
+
+    
+</body>
+</html>

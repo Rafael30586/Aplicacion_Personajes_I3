@@ -137,6 +137,22 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
+	@GetMapping("/formulario-edicion")
+	public ModelAndView mostrarFormularioEdicion(Model model, Model model2) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("edicion_personajes.html");
+		
+		List<Personaje> personajes = personajeServicio.devolverTodos();
+		model.addAttribute("personajes", personajes);
+		
+		List<Obra> obras = obraServicio.devolverTodas();
+		model2.addAttribute("obras",obras);
+		
+		
+		
+		return modelAndView;
+	}
+	
 	@GetMapping("/formulario-borrado-personaje")
 	public ModelAndView borrarPersonaje(Model model) {
 		ModelAndView modelAndView = new ModelAndView();
