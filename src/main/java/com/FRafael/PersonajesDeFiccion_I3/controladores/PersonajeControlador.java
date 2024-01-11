@@ -153,6 +153,35 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
+	@PostMapping("/editado")
+	public ModelAndView editarPersonaje(@RequestParam Long id, @RequestParam String nombre, 
+			@RequestParam String apodo, @RequestParam String idObra, @RequestParam String urlFoto,
+			Model model, Model model2) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("edicion_personajes.html");
+		
+		Personaje personaje = personajeServicio.devolverPorId(id);
+		Long idObraLong;
+		idObraLong = Long.parseLong(idObra);
+		
+		personaje.setNombre(nombre);
+		personaje.setApodo(apodo);
+		Obra obra = obraServicio.devolverPorId(idObraLong);
+		personaje.setObra(obra);
+		personaje.setFotoUrl(urlFoto);
+		
+		personajeServicio.guardar(personaje);
+		
+		List<Personaje> personajes = personajeServicio.devolverTodos();
+		model.addAttribute("personajes", personajes);
+		
+		List<Obra> obras = obraServicio.devolverTodas();
+		model2.addAttribute("obras",obras);
+		
+		
+		return modelAndView;
+	}
+	
 	@GetMapping("/formulario-borrado-personaje")
 	public ModelAndView borrarPersonaje(Model model) {
 		ModelAndView modelAndView = new ModelAndView();

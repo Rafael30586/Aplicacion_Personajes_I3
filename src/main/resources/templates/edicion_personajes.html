@@ -13,15 +13,15 @@
         
         <div class="formulario" id="formularioPersonaje">
             <h2>Formulario de edicion de perso<span class="letraColor1">najes</span></h2>
-            <form>
-                <select name="idPersonaje" id="selectPersonaje">
+            <form th:action="@{/personajes/editado}" method="post">
+                <select name="id" id="selectPersonaje">
                     <option th:each="personaje: ${personajes}" th:value="${personaje.id}"
                     th:text="${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}"></option>
                 </select><br>
                 <input type="text" name="nombre" placeholder="Nombre" id="inputNombre"><br>
                 <input type="text" name="apodo" placeholder="Apodo" id="inputApodo"><br>
-                <select name="obra" id="selectObra">
-                    <option th:each="obra: ${obras}" value="obra"
+                <select name="idObra" id="selectObra">
+                    <option th:each="obra: ${obras}" th:value="${obra.id}"
                     th:text="${obra.titulo}+' - '+${obra.anioLanzamiento}"></option>
                 </select><br>
                 <input type="text" name="urlFoto" placeholder="URL de una foto" id="inputUrlFoto"><br>
@@ -29,7 +29,7 @@
             </div>
         </form>
         <div class="formulario" id="formularioVolver">
-            <form>
+            <form th:action="@{/personajes/inicio}" method="get">
                 <button id="botonVolver" type="submit">Volver a página de inicio</button>
             </form>
         </div>
