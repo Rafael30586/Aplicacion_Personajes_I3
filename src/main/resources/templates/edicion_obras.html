@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/edicion_obras_estilo.css}">
+	<title></title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 id="exito">Obra editada con éxito</h1>
+        <!--<h1 id="error">Ha ocurrido un error</h1>-->
+        
+        <div class="formulario" id="formularioObra">
+            <h2>Formulario de edicio<span class="letraColor1">n de obras</span></h2>
+            <form th:action="@{/obras/editada}" method="post">
+                <select name="id" id="selectObra">
+                    <option th:each="obra: ${obras}" th:value="${obra.id}"
+                    th:text="${obra.titulo}+' - '+${obra.anioLanzamiento}"></option>
+                </select><br>
+                <input type="text" name="titulo" placeholder="Título" id="inputTitulo"><br>
+                <input type="number" name="anioLanzamiento" placeholder="Año de lanzamiento" id="inputLanzamiento"><br>
+                <select name="clasificacion" id="selectClasificacion">
+                    <option value="Video Juego">Video Juego</option>
+                    <option value="Comic">Comic</option>
+                    <option value="Pelicula">Película</option>
+                    <option value="Serie">Serie</option>
+                    <option value="Libro">Libro</option>
+                </select><br>
+                <button id="botonEnviar" type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="formulario" id="formularioVolver">
+            <form th:action="@{/personajes/inicio}" method="get">
+                <button id="botonVolver" type="submit">Volver a página de inicio</button>
+            </formth>
+        </div>
+    </div>
+    
+
+    <!--<script type="text/javascript" src="edicion_obras_codigo.js"></script>-->
+</body>
+</html>

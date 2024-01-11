@@ -3,6 +3,7 @@ package com.FRafael.PersonajesDeFiccion_I3.controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -154,15 +155,50 @@ public class ObraControlador {
 		return modelAndView;
 	}
 	
-	@PutMapping("/editada")
-	public void editarObra(@RequestParam Long id,@RequestBody Obra obraDatos) {
-		Obra obra = obraServicio.devolverPorId(id);
+	@GetMapping("/formulario-edicion")
+	public ModelAndView mostrarFormularioEdicion(Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("edicion_obras.html");
 		
-		obra.setTitulo(obraDatos.getTitulo());
-		obra.setAnioLanzamiento(obraDatos.getAnioLanzamiento());
-		obra.setClasificacion(obraDatos.getClasificacion());
+		List<Obra> obras = obraServicio.devolverTodas();
+		model.addAttribute("obras",obras);
+		
+		return modelAndView;
+	}
+	
+	@PostMapping("/editada")
+	public ModelAndView editarObra(@RequestParam Long id,@RequestParam String titulo,
+			@RequestParam int anioLanzamiento, @RequestParam String clasificacion, Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("edicion_obras.html");
+		
+		Obra obra = obraServicio.devolverPorId(id);
+		ClasificacionObra clasificacionObra;
+		
+		if(clasificacion.equals("Video Juego")) {
+			clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
+		}else if(clasificacion.equals("Pelicula")) {
+			clasificacionObra = ClasificacionObra.PELICULA;
+		}else if(clasificacion.equals("Comic")) {
+			clasificacionObra = ClasificacionObra.COMIC;
+		}else if(clasificacion.equals("Serie")) {
+			clasificacionObra = ClasificacionObra.SERIE;
+		}else if(clasificacion.equals("Libro")) {
+			clasificacionObra = ClasificacionObra.LIBRO;
+		}else {
+			clasificacionObra = null;
+		}
+		
+		obra.setTitulo(titulo);
+		obra.setAnioLanzamiento(anioLanzamiento);
+		obra.setClasificacion(clasificacionObra);
 		
 		obraServicio.guardar(obra);
+		
+		List<Obra> obras = obraServicio.devolverTodas();
+		model.addAttribute("obras",obras);
+		
+		return modelAndView;
 	}
 
 }
