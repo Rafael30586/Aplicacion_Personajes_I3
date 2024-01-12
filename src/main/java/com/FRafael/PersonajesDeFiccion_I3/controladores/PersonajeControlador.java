@@ -27,8 +27,24 @@ public class PersonajeControlador {
 	private ObraServicio obraServicio;
 	
 	@GetMapping("/inicio")
-	public ModelAndView mostrarInicio() {
+	public ModelAndView mostrarInicio(Model model,Model model2) { 
+		boolean invisible;
+		boolean invisiblePersonajes;
 		
+		if(obraServicio.devolverTodas().size()>0) { //tratar de achicar el codigo en una sola linea cada condicional
+			invisible = false;
+		}else {
+			invisible = true;
+		}
+		
+		if(personajeServicio.devolverTodos().size()>0) {
+			invisiblePersonajes = false;
+		}else {
+			invisiblePersonajes = true;
+		}
+		
+		model.addAttribute("invisible",invisible);
+		model2.addAttribute("invisiblePersonajes", invisiblePersonajes);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("index.html");
 		
