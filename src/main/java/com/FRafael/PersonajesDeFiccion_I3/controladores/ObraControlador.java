@@ -172,28 +172,41 @@ public class ObraControlador {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("edicion_obras.html");
 		
-		Obra obra = obraServicio.devolverPorId(id);
-		ClasificacionObra clasificacionObra;
-		
-		if(clasificacion.equals("Video Juego")) {
-			clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
-		}else if(clasificacion.equals("Pelicula")) {
-			clasificacionObra = ClasificacionObra.PELICULA;
-		}else if(clasificacion.equals("Comic")) {
-			clasificacionObra = ClasificacionObra.COMIC;
-		}else if(clasificacion.equals("Serie")) {
-			clasificacionObra = ClasificacionObra.SERIE;
-		}else if(clasificacion.equals("Libro")) {
-			clasificacionObra = ClasificacionObra.LIBRO;
+		if(!titulo.equals("")&&!clasificacion.equals(null)) {
+			Obra obra = obraServicio.devolverPorId(id);
+			ClasificacionObra clasificacionObra;
+			obra.setTitulo(titulo);
+			obra.setAnioLanzamiento(anioLanzamiento);
+			
+			if(clasificacion.equals("Video Juego")) {
+				clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+			}else if(clasificacion.equals("Pelicula")) {
+				clasificacionObra = ClasificacionObra.PELICULA;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+			}else if(clasificacion.equals("Comic")) {
+				clasificacionObra = ClasificacionObra.COMIC;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+			}else if(clasificacion.equals("Serie")) {
+				clasificacionObra = ClasificacionObra.SERIE;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+			}else if(clasificacion.equals("Libro")) {
+				clasificacionObra = ClasificacionObra.LIBRO;
+				obra.setClasificacion(clasificacionObra);
+				obraServicio.guardar(obra);
+			}else {
+				clasificacionObra = null;
+			}
+			
 		}else {
-			clasificacionObra = null;
+			
+			
 		}
 		
-		obra.setTitulo(titulo);
-		obra.setAnioLanzamiento(anioLanzamiento);
-		obra.setClasificacion(clasificacionObra);
-		
-		obraServicio.guardar(obra);
 		
 		List<Obra> obras = obraServicio.devolverTodas();
 		model.addAttribute("obras",obras);

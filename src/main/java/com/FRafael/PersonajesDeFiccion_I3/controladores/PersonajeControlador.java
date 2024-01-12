@@ -159,25 +159,33 @@ public class PersonajeControlador {
 			Model model, Model model2) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("edicion_personajes.html");
-		
-		Personaje personaje = personajeServicio.devolverPorId(id);
 		Long idObraLong;
-		idObraLong = Long.parseLong(idObra);
 		
-		personaje.setNombre(nombre);
-		personaje.setApodo(apodo);
-		Obra obra = obraServicio.devolverPorId(idObraLong);
-		personaje.setObra(obra);
-		personaje.setFotoUrl(urlFoto);
-		
-		personajeServicio.guardar(personaje);
-		
+		if((!apodo.equals("")||!nombre.equals(""))&&!idObra.equals("")&&!urlFoto.equals("")) {
+			if(apodo.length()<=25&&nombre.length()<=25) {
+				
+				idObraLong = Long.parseLong(idObra);
+				Personaje personaje = personajeServicio.devolverPorId(id);
+				personaje.setNombre(nombre);
+				personaje.setApodo(apodo);
+				Obra obra = obraServicio.devolverPorId(idObraLong);
+				personaje.setObra(obra);
+				personaje.setFotoUrl(urlFoto);
+				personajeServicio.guardar(personaje);
+				
+			}else {
+				
+			}
+			
+		}else {
+			
+		}
+
 		List<Personaje> personajes = personajeServicio.devolverTodos();
 		model.addAttribute("personajes", personajes);
 		
 		List<Obra> obras = obraServicio.devolverTodas();
 		model2.addAttribute("obras",obras);
-		
 		
 		return modelAndView;
 	}
