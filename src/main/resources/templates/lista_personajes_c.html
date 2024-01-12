@@ -14,7 +14,7 @@
         <div class="formulario">
             <h2>Buscar por nombr<span>e o apodo</span></h2>
             <form th:action="@{/personajes/filtro-por-nombre}" method="get">
-                <input type="text" name="nombre" placeholder="Primeras letras" class="inputFiltro"><br>
+                <input type="text" name="nombre" placeholder="Primeras letras" class="inputFiltro" maxlength="4"><br>
                 <button type="submit">Filtrar</button>
             </form>
         </div>

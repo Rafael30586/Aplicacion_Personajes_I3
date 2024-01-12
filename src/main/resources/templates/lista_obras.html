@@ -13,15 +13,15 @@
         <div class="formulario">
             <h2>Buscar por letras e<span>n el título</span></h2>
             <form th:action="@{/obras/filtro-por-titulo}" method="get">
-                <input type="text" name="letras" placeholder="Título"><br>
+                <input type="text" name="letras" placeholder="Título" maxlength="4"><br>
                 <button class="botonFiltrar" type="submit" id="porTitulo">Filtrar</button>
             </form>
         </div>
         <div class="formulario">
             <h2>Buscar por año de lan<span>zamiento</span></h2>
             <form th:action="@{/obras/filtro-por-lanzamiento}" method="get">
-                <input type="number" name="minimo" placeholder="Desde"><br>
-                <input type="number" name="maximo" placeholder="Hasta"><br>
+                <input type="number" name="minimo" placeholder="Desde" maxlength="4" min="0"><br>
+                <input type="number" name="maximo" placeholder="Hasta" maxlength="4" min="1"><br>
                 <button class="botonFiltrar" type="submit" id="porFechaLanzamiento">Filtrar</button>
             </form>
         </div>

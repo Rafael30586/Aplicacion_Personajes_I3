@@ -14,8 +14,9 @@
         <div class="formulario" id="formularioObra">
             <h2>Formulario de ag<span class="letraColor1">regado de obras</span></h2>
             <form th:action="@{/obras/guardada}" method="post">
-                <input type="text" name="titulo" placeholder="Título"><br>
-                <input type="number" name="anioLanzamiento" placeholder="Año de lanzamiento" id="inputLanzamiento"><br>
+                <input type="text" name="titulo" placeholder="Título" maxlength="40"><br>
+                <input type="number" name="anioLanzamiento" placeholder="Año de lanzamiento" 
+                id="inputLanzamiento" maxlength="4" min="0"><br> <!--Agregar un th:max si s que se puede-->
                 <select name="clasificacion" id="clasificacion">
                     <option value="Video Juego">Video Juego</option>
                     <option value="Comic">Comic</option>

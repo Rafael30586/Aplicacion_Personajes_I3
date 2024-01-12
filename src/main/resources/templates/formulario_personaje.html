@@ -14,8 +14,8 @@
 		<div class="formulario" id="formularioPersonaje">
 			<h2>Formulario de agrega<span class="letraColor1">do de personajes</span></h2>
 			<form th:action="@{/personajes/personaje-guardado}" method="post">
-				<input type="text" name="nombre" placeholder="Nombre"><br>
-				<input type="text" name="apodo" placeholder="Apodo"><br>
+				<input type="text" name="nombre" placeholder="Nombre" maxlength="25"><br>
+				<input type="text" name="apodo" placeholder="Apodo" maxlength="25"><br>
 				<select name="idObra" id="clasificacion">
 					<option th:each="obra: ${obras}" th:value="${obra.id}" 
 					th:text="${obra.titulo}+'('+${obra.anioLanzamiento}+')'"></option>

@@ -18,8 +18,8 @@
                     <option th:each="personaje: ${personajes}" th:value="${personaje.id}"
                     th:text="${personaje.nombre}+' '+${personaje.apodo}+' '+${personaje.obra.titulo}"></option>
                 </select><br>
-                <input type="text" name="nombre" placeholder="Nombre" id="inputNombre"><br>
-                <input type="text" name="apodo" placeholder="Apodo" id="inputApodo"><br>
+                <input type="text" name="nombre" placeholder="Nombre" id="inputNombre" maxlength="25"><br>
+                <input type="text" name="apodo" placeholder="Apodo" id="inputApodo" maxlength="25"><br>
                 <select name="idObra" id="selectObra">
                     <option th:each="obra: ${obras}" th:value="${obra.id}"
                     th:text="${obra.titulo}+' - '+${obra.anioLanzamiento}"></option>
@@ -36,6 +36,6 @@
     </div>
     
 
-    
+    <!--<script type="text/javascript" th:src="@(/js/edicion_personajes_codigo.js)"></script>-->
 </body>
 </html>
