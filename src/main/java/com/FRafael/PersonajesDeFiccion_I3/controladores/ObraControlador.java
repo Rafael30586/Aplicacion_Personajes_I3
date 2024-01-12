@@ -89,7 +89,7 @@ public class ObraControlador {
 		return modelAndView;
 	}
 	
-	@GetMapping("/lista")
+	@GetMapping("/lista") 
 	public ModelAndView listarObras(Model model,Model modelCantidad) {
 			
 		List<Obra> obras = obraServicio.devolverPorTitulo();
@@ -108,12 +108,19 @@ public class ObraControlador {
 		return modelAndView;
 	}
 	
-	@GetMapping("/filtro-por-titulo")
+	@GetMapping("/filtro-por-titulo") //validacion para no usar mas de cuatro caracteres
 	public ModelAndView filtrarPorTitulo(String letras,Model model,Model modelCantidad){
 			 
-		List<Obra> obras = obraServicio.devolverFiltroTitulo(letras);
-		
-        long cantidadObras = obras.size();
+		List<Obra> obras;
+		long cantidadObras;
+        
+        if(letras.length()<=4) {
+        	obras = obraServicio.devolverFiltroTitulo(letras);
+        }else {
+        	obras = obraServicio.devolverTodas();
+        }
+        
+        cantidadObras = obras.size();
         
         if(cantidadObras!=0) {
         	model.addAttribute("obras",obras);
@@ -127,7 +134,7 @@ public class ObraControlador {
 		return modelAndView;
 	}
 	
-	@GetMapping("/filtro-por-lanzamiento")
+	@GetMapping("/filtro-por-lanzamiento") //validar minimo y maximo 
 	public ModelAndView filtrarPorLanzamiento(int minimo, int maximo,Model model,Model modelCantidad,
 			Model mensaje){
 		String mensajeDeAviso="";

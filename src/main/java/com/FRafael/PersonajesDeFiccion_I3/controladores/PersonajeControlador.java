@@ -102,15 +102,22 @@ public class PersonajeControlador {
 		return modelAndView;
 	}
 	
-	@GetMapping("/filtro-por-nombre")
+	@GetMapping("/filtro-por-nombre") //validacion para no usar mas de cuatro caracteres
 	public ModelAndView filtrarPorNombre(String nombre,Model model,Model modelCantidad) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("lista_personajes_c.html");
 		
-		List<Personaje> personajes = personajeServicio.devolverFiltroNombre(nombre);
+		List<Personaje> personajes;
 		
-        long cantidadPersonajes = personajes.size();
+		if(nombre.length()<=4) {
+			personajes = personajeServicio.devolverFiltroNombre(nombre);
+		}else {
+			personajes = personajeServicio.devolverTodos();
+		}
+		
+		long cantidadPersonajes;
+        cantidadPersonajes = personajes.size();
 		
 		model.addAttribute("personajes",personajes);
 		modelCantidad.addAttribute("cantidad", cantidadPersonajes);
