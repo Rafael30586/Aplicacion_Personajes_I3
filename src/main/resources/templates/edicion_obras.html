@@ -20,7 +20,7 @@
                 </select><br>
                 <input type="text" name="titulo" placeholder="Título" id="inputTitulo" maxlength="40"><br>
                 <input type="number" name="anioLanzamiento" 
-                placeholder="Año de lanzamiento" id="inputLanzamiento" min="0"><br>
+                placeholder="Año de lanzamiento" id="inputLanzamiento" min="0" th:max="${anioActual}"><br>
                 <select name="clasificacion" id="selectClasificacion">
                     <option value="Video Juego">Video Juego</option>
                     <option value="Comic">Comic</option>

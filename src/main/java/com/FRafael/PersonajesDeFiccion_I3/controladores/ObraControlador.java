@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import com.FRafael.PersonajesDeFiccion_I3.entidades.ClasificacionObra;
@@ -25,9 +27,13 @@ public class ObraControlador {
 	private ObraServicio obraServicio;
 	
 	@GetMapping("/formulario")
-	public ModelAndView mostrarFormulario() {
+	public ModelAndView mostrarFormulario(Model model) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("formulario_obra.html");
+		
+		Integer anioActual = LocalDate.now().getYear();
+		
+		model.addAttribute("anioActual",anioActual);
 		
 		return modelAndView;
 	}
@@ -90,7 +96,7 @@ public class ObraControlador {
 	}
 	
 	@GetMapping("/lista") 
-	public ModelAndView listarObras(Model model,Model modelCantidad) {
+	public ModelAndView listarObras(Model model,Model modelCantidad,Model actualidad) {
 			
 		List<Obra> obras = obraServicio.devolverPorTitulo();
 		
@@ -104,6 +110,10 @@ public class ObraControlador {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("lista_obras.html");
+		
+        Integer anioActual = LocalDate.now().getYear();
+		
+		actualidad.addAttribute("anioActual",anioActual);
 		
 		return modelAndView;
 	}
@@ -163,12 +173,16 @@ public class ObraControlador {
 	}
 	
 	@GetMapping("/formulario-edicion")
-	public ModelAndView mostrarFormularioEdicion(Model model) {
+	public ModelAndView mostrarFormularioEdicion(Model model,Model model2) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("edicion_obras.html");
 		
 		List<Obra> obras = obraServicio.devolverTodas();
 		model.addAttribute("obras",obras);
+		
+        Integer anioActual = LocalDate.now().getYear();
+		
+		model2.addAttribute("anioActual",anioActual);
 		
 		return modelAndView;
 	}

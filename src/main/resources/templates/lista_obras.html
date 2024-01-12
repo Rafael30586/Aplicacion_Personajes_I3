@@ -21,7 +21,8 @@
             <h2>Buscar por año de lan<span>zamiento</span></h2>
             <form th:action="@{/obras/filtro-por-lanzamiento}" method="get">
                 <input type="number" name="minimo" placeholder="Desde" maxlength="4" min="0"><br>
-                <input type="number" name="maximo" placeholder="Hasta" maxlength="4" min="1"><br>
+                <input type="number" name="maximo" placeholder="Hasta" 
+                maxlength="4" min="1" th:max="${anioActual}"><br>
                 <button class="botonFiltrar" type="submit" id="porFechaLanzamiento">Filtrar</button>
             </form>
         </div>
