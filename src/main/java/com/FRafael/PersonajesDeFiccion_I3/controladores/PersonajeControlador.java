@@ -156,10 +156,11 @@ public class PersonajeControlador {
 	@PostMapping("/editado")
 	public ModelAndView editarPersonaje(@RequestParam Long id, @RequestParam String nombre, 
 			@RequestParam String apodo, @RequestParam String idObra, @RequestParam String urlFoto,
-			Model model, Model model2) {
+			Model model, Model model2,Model mensaje, Model mensaje2) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("edicion_personajes.html");
 		Long idObraLong;
+		String mensajeDeAviso="";
 		
 		if((!apodo.equals("")||!nombre.equals(""))&&!idObra.equals("")&&!urlFoto.equals("")) {
 			if(apodo.length()<=25&&nombre.length()<=25) {
@@ -172,13 +173,17 @@ public class PersonajeControlador {
 				personaje.setObra(obra);
 				personaje.setFotoUrl(urlFoto);
 				personajeServicio.guardar(personaje);
+				mensajeDeAviso = "Personaje guardado correctamente";
+				mensaje.addAttribute("mensajeExitoso",mensajeDeAviso);
 				
 			}else {
-				
+				mensajeDeAviso = "El nombre o apodo del personaje es demasiado extenso";
+				mensaje2.addAttribute("mensajeDeError",mensajeDeAviso);
 			}
 			
 		}else {
-			
+			mensajeDeAviso = "Ha ocurrido un error";
+			mensaje2.addAttribute("mensajeDeError",mensajeDeAviso);
 		}
 
 		List<Personaje> personajes = personajeServicio.devolverTodos();

@@ -74,7 +74,7 @@ public class ObraControlador {
 					obraServicio.guardar(obra);
 					mensajeDeAviso = "La obra se ha guardado correctamente";
 				}
-				mensaje.addAttribute("mensaje", mensajeDeAviso);	
+				mensaje.addAttribute("mensaje", mensajeDeAviso);	//no entiendo esto que hice
 			}else {
 				mensajeDeAviso = "El titulo de la obra es demasiado extenso";
 				mensaje2.addAttribute("mensaje2", mensajeDeAviso);
@@ -168,9 +168,11 @@ public class ObraControlador {
 	
 	@PostMapping("/editada")
 	public ModelAndView editarObra(@RequestParam Long id,@RequestParam String titulo,
-			@RequestParam int anioLanzamiento, @RequestParam String clasificacion, Model model) {
+			@RequestParam int anioLanzamiento, @RequestParam String clasificacion, Model model
+			,Model mensaje,Model mensaje2) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("edicion_obras.html");
+		String mensajeDeAviso="";
 		
 		if(!titulo.equals("")&&!clasificacion.equals(null)) {
 			Obra obra = obraServicio.devolverPorId(id);
@@ -182,29 +184,41 @@ public class ObraControlador {
 				clasificacionObra = ClasificacionObra.VIDEO_JUEGO;
 				obra.setClasificacion(clasificacionObra);
 				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+				mensaje.addAttribute("mensaje", mensajeDeAviso);
 			}else if(clasificacion.equals("Pelicula")) {
 				clasificacionObra = ClasificacionObra.PELICULA;
 				obra.setClasificacion(clasificacionObra);
 				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+				mensaje.addAttribute("mensaje", mensajeDeAviso);
 			}else if(clasificacion.equals("Comic")) {
 				clasificacionObra = ClasificacionObra.COMIC;
 				obra.setClasificacion(clasificacionObra);
 				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+				mensaje.addAttribute("mensaje", mensajeDeAviso);
 			}else if(clasificacion.equals("Serie")) {
 				clasificacionObra = ClasificacionObra.SERIE;
 				obra.setClasificacion(clasificacionObra);
 				obraServicio.guardar(obra);
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+				mensaje.addAttribute("mensaje", mensajeDeAviso);
 			}else if(clasificacion.equals("Libro")) {
 				clasificacionObra = ClasificacionObra.LIBRO;
 				obra.setClasificacion(clasificacionObra);
 				obraServicio.guardar(obra);
-			}else {
-				clasificacionObra = null;
+				mensajeDeAviso = "La obra se ha guardado correctamente";
+				mensaje.addAttribute("mensaje", mensajeDeAviso);
 			}
-			
+			else {
+				clasificacionObra = null;
+				mensajeDeAviso = "El titulo de la obra es demasiado extenso";
+				mensaje2.addAttribute("mensaje2", mensajeDeAviso);
+			}
 		}else {
-			
-			
+			mensajeDeAviso = "Ha ocurrido un error";
+			mensaje2.addAttribute("mensaje2", mensajeDeAviso);
 		}
 		
 		
